@@ -1,50 +1,75 @@
-h1{
+h1, h2{
     font-weight: 200;
     font-size: 25px;
     text-align: center;
 }
 body{
     text-align: center;
-    background-color: rgb(17, 255, 255);
+    background-color: #ffcead7e;
     color: rgb(0, 0, 0);
     font-family: 'Times New Roman', Times, serif;
-    font-weight: 200;
+    font-weight: 200;  
 }
-#contenedor{
+.container{
     display: flex;
     flex-direction: column;
     align-items: center;
-    justify-content: center;
     height: 100vh;
+    margin-top: 5%;
 }
 input{
     margin: 5px;
     padding: 10px;
-    background-color:black;
-    color: violet;
-    font-size: 15px;
+    background-color: rgb(130, 189, 238);
+    color: black;
+    font-size: 13px;
     text-align: center;
     border: 3px solid;
     text-transform: initial;
     text-decoration: none;
-    letter-spacing: 2px;
-    outline: antiquewhite;
+    letter-spacing: 1px;
 }
-.dropzone {
+button:hover{
+    transition: 0.3s;
+    background-color: aquamarine;
+    color: black;
+    text-decoration: underline;
+}
+.tabla{
+    background-color: rgb(255, 246, 246);
+    color: black;
     text-align: center;
-    width: 500px;
-    height: 150px;
-    border:dashed black;
-    color:black;
-    line-height: 100px;
-    position: absolute;
-    left: 37%;
-    margin-left: -50px;
-    top: 30%;
-    margin-top: -50px;
+    border-collapse: collapse;
+    width: 80%;
+    border: solid 2px; 
 }
-.dropzone.dragover {
+th, td{
+    padding: 1%;
+    border: solid 2px; 
+}
+tr:first-of-type{background-color: #fff281;
+color:black;
+}
+tr:nth-child(even){
+    background-color: #e2e2e2;
 
-    border-color: #000;
-    color:#000;
 }
+tr:hover td{
+    background-color: #669beb;
+    color: white;   
+    
+}
+
+tr:nth-child(even).selected {
+    background-color: #c2ecf7;
+    color:  white;
+}
+
+
+.selected {
+    background-color: #9aebff;
+    color: white;
+}
+  
+ 
+  
