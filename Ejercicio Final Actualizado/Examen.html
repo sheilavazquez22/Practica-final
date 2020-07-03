@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html>
+    <head lang="es">
+        <!--Creacion de los meta-->
+        <meta charset="utf-8"> 
+        <meta name="Nombre:" content="Sheila Elizabeth Vázquez Chimay"> 
+        <meta name="Descripcion" content="Pagina web que convierte archivos .CSV en tablas">
+        <!--Nombre o titulo de la pagina-->
+        <title>Practica final</title>
+        <!--Conexion con el CSS-->
+        <link rel="stylesheet" type="text/css" href="Examen.css">
+    </head>
+    <body>
+        <!--Texto iniciales de la pagina-->
+        <h1>En esta pagina podra convertir tus archivos .CSS en una tabla</h1>
+        <h2>Para subir el archivo da Click en el botón "Examinar" o arrastralo</h2>
+        <!--Creacion de inputs para el uso de la pagina-->
+        <input type="file" id="Examinar"/>
+        <input type="button" id="VistaArchivo" value="Convertir" />
+        <input type="button" id="Seleccion" value="Seleccionar" onclick="fnselect()" />   
+        
+    <div class="container" id="container">
+    <!--Creacion de la tabla-->
+    <table class="tabla" id="VistaTabla">
+        <thead>
+          <tr class="thead"></tr>
+        </thead>
+        <tbody>
+        </tbody>
+      </table>
+    </div>  
+<!--Permite poder --> 
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<!--Funcion para la generacion de tabla-->
+<script>
+    $( document ).ready(function() {
+        $('#VistaArchivo').click(function () { 
+            var archivoInput = document.getElementById('VistaTabla');
+            archivoInput.innerHTML = ""; 
+            var archivoIN = document.getElementById('Examinar')
+            var archivoRuta = archivoIN.value;
+            var extPermitidas = /(.csv)$/i;
+            var rdr = new FileReader(); 
+            if(!extPermitidas.exec(archivoRuta))
+            {
+                alert('Asegurese de que el archivo sea .csv');
+                console.log("No es un archivo .csv o no se ingreso un archivo");
+                archivoIn.value='';
+                return false;
+            }
+            else{
+            if (archivoIN.files && archivoIN.files[0])
+            rdr.onload = function (e) {
+              var therows = e.target.result.split("\n"); 
+              var columns = therows[0].split(",");
+                var colcount = columns.length;
+                var newhead="<tr><th>" + columns[0] + "</th>";
+                for(var i=1;i<colcount;i++){
+                     newhead=newhead+("<th>" + columns[i] + "</th>");
+                }
+                newhead=newhead+"</tr>"
+                $('#VistaTabla').append(newhead);
+                for (var row = 1; row < therows.length; row ++ ) {
+                var columns = therows[row].split(",");
+                var colcount = columns.length;
+                var newrow="<tr><td>" + columns[0] + "</td>";
+                for(var i=1;i<colcount;i++){
+                     newrow=newrow+("<td>" + columns[i] + "</td>");
+                }
+             newrow=newrow+"</tr>"
+             $('#VistaTabla').append(newrow);
+            }
+        }
+    }
+            rdr.readAsText($("#Examinar")[0].files[0]);
+        });
+    });
+    </script>
+<!--Conexion con JavaScript-->
+<script src="Examen.js"></script>
+    </body>
+</html>
